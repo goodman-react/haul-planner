@@ -1,0 +1,700 @@
+:root {
+  --paper: #f7ecd9;
+  --card: #fffaf0;
+  --ink: #3b2417;
+  --brown: #8c5a2b;
+  --tan: #e0cba4;
+  --orange: #d94f2b;
+  --orange-dark: #9a3a1e;
+  --amber: #e8a13c;
+  --green: #4f6f52;
+  --muted: #7a5c40;
+  --radius: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Archivo Narrow", "Inter", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- retro stripes + hero ---------- */
+.stripes {
+  height: 12px;
+  background: linear-gradient(
+    90deg,
+    var(--orange) 0 25%,
+    var(--amber) 0 50%,
+    var(--brown) 0 75%,
+    var(--green) 0 100%
+  );
+}
+
+.hero {
+  padding: 2.4rem 1.5rem 3.6rem;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.logo {
+  font-family: "Righteous", cursive;
+  font-size: 1.5rem;
+  color: var(--orange);
+  text-shadow: 2px 2px 0 var(--amber);
+  letter-spacing: 0.02em;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 8px;
+  padding: 0.32rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero h1 {
+  font-family: "Righteous", cursive;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+
+.hero p {
+  margin-top: 0.7rem;
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+
+/* ---------- layout ---------- */
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: -1.6rem auto 3rem;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.panel {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--ink);
+  padding: 1.4rem;
+}
+
+.panel h2 {
+  font-family: "Righteous", cursive;
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+/* ---------- form ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brown);
+}
+
+.field input {
+  border: 2px solid var(--ink);
+  border-radius: 9px;
+  padding: 0.62rem 0.8rem;
+  font: inherit;
+  font-weight: 600;
+  background: #fff;
+  transition: box-shadow 0.15s;
+}
+
+.field input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(232, 161, 60, 0.5);
+}
+
+.submit-btn {
+  margin-top: 1.1rem;
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-family: "Righteous", cursive;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--orange-dark);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--ink);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ---------- states ---------- */
+.error-banner {
+  background: #fbe3d6;
+  color: var(--orange-dark);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+}
+
+.loading {
+  text-align: center;
+  padding: 2.5rem 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 0.8rem;
+  border: 5px solid var(--tan);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- summary (bento board) ---------- */
+.bento {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1.7fr 1fr 1fr 1.4fr;
+  grid-template-areas:
+    "hero wheel door sched"
+    "hero pages rests sched";
+}
+
+.bx {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 3px 0 var(--ink);
+  padding: 0.7rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bx b {
+  font-family: "Righteous", cursive;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.bx span {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brown);
+}
+
+.bx-hero {
+  grid-area: hero;
+  background: var(--orange);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 1.1rem 1.3rem;
+}
+
+.bx-hero b {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.bx-hero span {
+  color: #ffd9a8;
+}
+
+.bx span.bx-truck {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 6px;
+  font-size: 3.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 3px 0 rgba(59, 36, 23, 0.35));
+}
+
+.bx-road {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 9px;
+  background: var(--ink);
+}
+
+.bx-road::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 50%;
+  border-top: 2.5px dashed var(--amber);
+  transform: translateY(-50%);
+}
+
+.bx-wheel { grid-area: wheel; }
+.bx-door { grid-area: door; }
+.bx-pages { grid-area: pages; }
+.bx-rests { grid-area: rests; }
+
+.bx-pages b,
+.bx-rests b {
+  color: var(--orange);
+}
+
+.bx-sched {
+  grid-area: sched;
+  gap: 0.35rem;
+}
+
+.sched-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bx-sched b {
+  font-size: 0.95rem;
+}
+
+.sched-mid span {
+  font-size: 0.7rem;
+}
+
+.sched-arrow {
+  color: var(--orange);
+  font-size: 1rem;
+}
+
+@media (max-width: 760px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "hero hero"
+      "wheel door"
+      "pages rests"
+      "sched sched";
+  }
+
+  .bx-hero b {
+    font-size: 1.7rem;
+  }
+}
+
+/* ---------- map + timeline ---------- */
+.map-timeline {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.4rem;
+}
+
+.map-container {
+  height: 440px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+}
+
+/* Desktop: both cards share one fixed height; the timeline scrolls inside. */
+@media (min-width: 901px) {
+  .map-panel,
+  .timeline-panel {
+    height: 532px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-container {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .timeline-panel {
+    max-height: none;
+  }
+
+  .timeline {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+  }
+}
+
+/* Stacked layouts: cap the timeline's height and scroll inside it. */
+@media (max-width: 900px) {
+  .map-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-panel {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}
+
+.stop-marker {
+  background: none;
+  border: none;
+}
+
+.stop-pin {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2.5px solid var(--pin, var(--ink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 6px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px dotted var(--tan);
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.timeline-dot {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  margin-top: 4px;
+}
+
+.timeline-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.status-chip {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+.timeline-sub {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ---------- log sheets ---------- */
+.log-count {
+  font-size: 0.8rem;
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+.log-sheet {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  background: var(--card);
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.log-sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.log-sheet-title {
+  font-family: "Righteous", cursive;
+  font-size: 1.2rem;
+}
+
+.log-sheet-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.log-head-fields,
+.log-route-row {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.log-route-row {
+  margin-top: 0.7rem;
+}
+
+.head-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.head-field.wide {
+  min-width: 260px;
+}
+
+.head-value {
+  font-weight: 700;
+  border-bottom: 2px solid var(--ink);
+  padding: 0 0.3rem 2px;
+  min-width: 110px;
+  font-size: 0.92rem;
+}
+
+.head-label {
+  font-size: 0.68rem;
+  color: var(--brown);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.log-grid-scroll {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.log-grid-svg {
+  display: block;
+}
+
+.svg-hour-label {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--brown);
+}
+
+.svg-row-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+.svg-row {
+  fill: #fffdf8;
+}
+
+.svg-row-alt {
+  fill: #faf3e3;
+}
+
+.svg-hour-line {
+  stroke: #c9b285;
+  stroke-width: 1;
+}
+
+.svg-tick {
+  stroke: var(--tan);
+  stroke-width: 1;
+}
+
+.svg-row-line {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+
+.svg-duty-line {
+  stroke: var(--orange);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.svg-total-box {
+  fill: #fffdf8;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.svg-total-value {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+
+.svg-total-sum {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--orange-dark);
+}
+
+.log-remarks {
+  margin-top: 0.6rem;
+  border-top: 2px solid var(--ink);
+  padding-top: 0.6rem;
+}
+
+.remarks-title {
+  font-family: "Righteous", cursive;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.log-remarks ul {
+  list-style: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--muted);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.2rem 1.2rem;
+}
+
+.log-remarks b {
+  color: var(--ink);
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 640px) {
+  .hero {
+    padding: 1.8rem 1.1rem 2.8rem;
+  }
+
+  .content {
+    padding: 0 0.9rem;
+    gap: 1.1rem;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .map-container {
+    height: 320px;
+  }
+
+  .timeline-panel {
+    max-height: 380px;
+  }
+
+  .log-sheet {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .log-head-fields,
+  .log-route-row {
+    gap: 0.8rem;
+  }
+
+  .head-field.wide {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------- footer ---------- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 1.2rem;
+  border-top: 2px dotted var(--tan);
+}
