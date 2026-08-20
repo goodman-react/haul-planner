@@ -62,13 +62,18 @@ cd backend
 python manage.py test
 ```
 
-## Deploy
+## Deploy (both on Vercel)
 
-- **Frontend → Vercel**: import the repo, set root directory to `frontend/`,
-  framework Vite. Set env var `VITE_API_URL` to the backend URL.
-- **Backend → Render**: new Web Service, root `backend/`, build command
-  `./build.sh`, start command `gunicorn config.wsgi:application`. Set
-  `SECRET_KEY` and `DEBUG=false`.
+Create **two Vercel projects** from this one repo:
+
+1. **Backend** — import the repo, set Root Directory to `backend/`, framework
+   "Other". Django runs as a Python serverless function via `api/index.py` +
+   `vercel.json`. Set env vars `SECRET_KEY` (random string) and `DEBUG=false`.
+2. **Frontend** — import the repo again, Root Directory `frontend/`, framework
+   Vite. Set `VITE_API_URL` to the backend project's URL (no trailing slash).
+
+(`backend/build.sh` is only needed for Render-style hosts and is unused on
+Vercel.)
 
 ## API
 
